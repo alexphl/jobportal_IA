@@ -1,0 +1,408 @@
+@charset "UTF-8";
+html {display: block;} /* Only show elements once CSS is loaded to prevent jank */
+   
+
+#homelogo {width: 20%; margin:auto;}
+
+.material-icons {
+  line-height: inherit;
+  vertical-align: middle;
+  height: auto;
+}
+
+h1 {
+	font-weight: 400;
+	font-size: 1.5em;
+	line-height: 100%;
+	display:inline;
+}
+
+h3 {
+	font-weight: 500;
+	font-size: 0.9em;
+	line-height: inherit;
+	display:inline;
+	opacity: 0.8;
+}
+
+.red {color: #E57373;}
+
+table {
+	width: 100%;
+	font-size: 1em;
+	outline: none;
+	font-weight: 400;
+	text-align: left;
+}
+
+td, th {border-bottom: 1px solid grey; font-weight: 300; font-size: 1em; line-height: inherit;}
+tr {height: 65px;}
+tr:hover {background-color: rgba(255,255,255,0.1);}
+
+a{color: #90A4AE;}
+
+a.smallbutton {font-weight: 500; font-size: 0.8em; text-decoration: none; padding: 6px; border-radius: 4px; transition: all 0.15s ease-out;}
+
+a.smallbutton:hover {background-color: rgba(96, 125, 139, 0.1);}
+
+#imagemask {
+	width: 15vh; 
+	height: 15vh;
+	border-radius: 100%; 
+	overflow: hidden; 
+	border: solid 4px; 
+	padding: 5px; 
+	margin-top: 15vh; 
+}
+
+#imagemask:hover {
+	background-color: rgba(255, 255, 255, 0.2);
+}
+
+#sidepanel {
+	background-color: #424242;
+	float: left;
+	height: 100%;
+	width: 320px;
+	left: 0;
+	top: 0;
+	grid-column: 1;
+	position: fixed;
+	padding: 20px;
+	box-shadow: 0 0 5px rgba(0,0,0,0.12);
+	z-index: 98;
+	display: none;
+	transition: height 0s;
+	transition: width 0.3s; 
+	box-sizing: border-box;
+	padding-bottom: 100px;
+	overflow: scroll;
+}
+
+#allgrid {
+	display: block;
+	grid-template-columns: 320px auto;
+	padding: none;
+	grid-gap: none;
+}
+
+#cardgrid {
+	display: block;
+	grid-template-columns: repeat(2,1fr);
+	padding: 3%;
+	grid-column-gap: 4%;
+	grid-column: 2;
+}
+
+#dashgrid {
+	display: grid;
+	grid-template-columns: repeat(2,1fr);
+	padding-top: 5%;
+	grid-column-gap: 4%;
+	grid-column: 2;
+}
+
+#menubar {
+	position: fixed;
+	left: 0;
+	width: 100%;
+	box-shadow: 0 0 5px rgba(0,0,0,0.12);
+	z-index: 99;
+	font-family: Roboto;
+	background-color: rgba(0,0,0,0.9);
+	display: flex;
+}
+
+@supports ((-webkit-backdrop-filter: blur(2em)) or (backdrop-filter: blur(2em))) { /* Blur for supported browsers */
+	#menubar {
+	background-color: rgba(0,0,0,0.8);
+	-webkit-backdrop-filter: blur(20px);
+	backdrop-filter: blur(20px);
+	} 
+}
+
+button.inmenubar {
+	border: none; border-radius: 100%;
+	margin: auto;
+	background: transparent;
+	box-shadow: none;
+	outline: none;
+	color: white;
+	min-width: 0;
+	padding: 10;
+	width: 50px;
+	height: 50px;
+}
+
+
+.inmenubar:hover {
+	background-color: rgba(255, 255, 255, 0.2);
+	box-shadow: 0;
+}
+
+div.banner {
+	margin: auto;
+	padding-top: 15vh; padding-bottom: 15vh;
+	line-height: 120%;
+	color: white;
+	font-weight: 100;
+	font-size: 300%; 
+	grid-column: 2;
+	max-width: 90%;
+	overflow: hidden;
+}
+
+button {
+	box-sizing: border-box;
+	min-width: 140px; height: 45px;
+	margin-bottom: 2vh; 
+	font-size: 0.9em;
+	border-radius: 4px;
+	border: none;
+	background-color: #90A4AE;
+	color: black;
+	outline: none;
+	transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+	font-weight: 500;
+	box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+	line-height: 100%;
+	padding-left: 15px;
+	padding-right: 15px;
+	vertical-align: middle;
+}
+
+button.incard {position: absolute; z-index: 50; bottom: 15; right: 15; margin-bottom: 0px; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0px 0px 25px 12px #424242;  min-width: 0px;}
+button.incard:hover {box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0px 0px 25px 12px #424242}
+
+button.listitem {
+	width: 100%; height: 70px;
+	font-size: 1em;
+	border-radius: 0px;
+	border-bottom: 1px solid grey;
+	background-color: transparent;
+	color: white;
+	outline: none;
+	transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+	font-weight: 400;
+	box-shadow: none;
+	margin: auto;
+	text-align: left;
+	padding-top: 5px;
+}
+
+button.listitem:hover {
+	background-color: rgba(255, 255, 255, 0.1);
+	box-shadow: none;
+}
+
+button.outlined {
+	border:solid;
+	border-width: 2px;
+	background-color: transparent;
+	color: #90A4AE;
+	border-color: #90A4AE;
+	outline: none;
+	box-shadow: none;
+}
+
+button.outlined.red {color: #E57373; border-color: #E57373;}
+
+button:hover {
+	box-shadow: 0 3px 6px rgba(0,0,0,0.16);
+}
+
+
+button.outlined:hover {
+	color: black;
+	background-color: #90A4AE;
+}
+
+button.outlined.red:hover {
+	color: black;
+	background-color: #E57373;
+}
+
+body {
+	background-color: #212121;
+	font-family: Roboto;
+	color: white;
+}
+
+div.list {
+	width:60%; min-height: 500px;
+	font-size: 1em;
+	color: white;
+	border-radius: 4px;
+	background-color: #424242;
+	margin-bottom: 5%;
+	padding: 30;
+	box-sizing: border-box;
+	text-align: left;
+}
+
+#cardpic {
+	height: 66%;
+	width: 100%;
+	background: #90A4AE;
+	position: absolute;
+	display: grid;
+	grid-template-columns: 30% auto;
+	grid-column-gap: 5%;
+	padding-left: 5%;
+	grid-template-rows: 100%;
+	align-items: center;
+	font-size: 2.1em;
+	font-weight: 100;
+}
+
+#cardcontent {
+	bottom: 0;
+	width: 100%;
+	height: 35%;
+	background-color: #424242;
+	position: absolute;
+	box-shadow: 0 1px 10px rgba(0,0,0,0.9);
+	box-sizing: border-box;
+	padding: 20px;
+	transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.1);;
+	color: #E0E0E0;
+	overflow: hidden;
+}
+
+#cardcontent:after {width: 100%; content: ""; position: absolute; box-shadow: 0px 0px 30px 25px #424242; bottom: 0;}
+
+#cardcontent:hover {
+	height: 95%;
+	color: white;
+	border-radius: 1%;
+}
+
+#card {
+	box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+	border-radius: 1%;
+	width:100%; height: 40vh; max-height: 400px; min-height: 240px;
+	position: relative;
+	display: grid;
+	grid-template-rows: auto auto;
+	overflow: hidden;
+	margin-bottom: 10%;
+}
+
+@media only screen and (max-width: 600px) {
+
+	#menubar {
+		height: 65px; 
+		bottom: 0; 	
+	}
+
+	.inmenubar {
+		font-size: 1em;
+		height: 100%;
+		width: 45px;
+	}
+
+	body{padding-bottom: 65px}
+
+	#sidepanel {display: none; height: calc(100% - 65px);}
+
+	div.list {width: 100%; left: 0; position: absolute; border-radius: 0px; padding-bottom: 100px;}
+	#dashgrid {display: block;}
+	.cardlogo {width: 12vh !important; height: 12vh !important;}
+}
+
+
+@media only screen and (min-width: 600px) {
+
+	body{padding-top: 45px}
+
+	#cardgrid {padding: 6%; display: grid;}
+
+	#menubar {top: 0; height: 60px;}
+
+	.desktophide {display: none;}
+
+	div.list {width: 90%; padding: 50; box-shadow: 10 -20px 50px #424242;}
+	.cardlogo {width: 7vw !important; height: 7vw !important;}
+
+	#sidepanel {padding-top: 80px;}
+	
+}
+
+textarea.input {
+	padding: 20px;
+	min-width: 60%;
+    box-sizing: border-box;
+    background: rgba(144, 164, 174, 0.1);
+    border: none;
+    border-radius: 4px;
+    color:white;
+    font-size: 1em;
+    outline: none;
+    font-weight: 500;
+    transition: all 0.15s ease-out;
+}
+
+input.input {
+	padding: 20px;
+	width: 300px; max-width: 100%;
+    box-sizing: border-box;
+
+}
+
+input.input:focus {
+    background: rgba(144, 164, 174, 0.2);
+}
+
+input:focus::placeholder {
+    color: transparent;
+    padding-top: -10;
+}
+
+select.input {
+	padding-left: 20px;
+	height: 50px;
+	-webkit-appearance:none;
+}
+
+.input {
+	height: 50px;
+	width: 300px;
+	max-width: 100%;
+    background: rgba(96, 125, 139, 0.1);
+    border: none;
+    border-radius: 4px;
+    color:white;
+    font-size: 1em;
+    outline: none;
+    font-weight: 500;
+    transition: all 0.15s ease-out;}
+
+select.input:focus {
+    background: rgba(144, 164, 174, 0.2);
+}
+
+@media only screen and (min-width: 1300px) {
+
+	#cardgrid {padding: 8%; grid-column-gap: 3%;}
+
+	#allgrid {display: grid;}
+	#sidepanel {display: block !important;}
+
+	#filter_list {display: none !important;}
+	
+	div.list {width: 60%}
+	div.container1 {width: 60%}
+}
+
+@media only screen and (min-width: 2000px) { 
+
+	#menubar {height: 80px;}
+
+}
+
+@supports not (display: grid) {
+	
+	body {content "Browser not supported";}
+
+}
+
