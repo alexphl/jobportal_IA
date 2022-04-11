@@ -1,4 +1,5 @@
 <?php
+	error_reporting(E_ERROR);
 
 	function callCard($job_id) {
 		include 'card.php';
@@ -13,7 +14,7 @@
 	}
 
 	function login($email, $password) {
-		$mysqli = new mysqli("127.0.0.1", "anon", "123", "SIT");
+		$mysqli = new mysqli("127.0.0.1", "root", "zoolook22", "SIT");
 
 		// SQL injection mitigation
 		$email = mysqli_real_escape_string($mysqli,$email);
@@ -39,7 +40,7 @@
 	}
 
 	function initSession($email, $phash) {
-		$mysqli = new mysqli("127.0.0.1", "anon", "123", "SIT");
+		$mysqli = new mysqli("127.0.0.1", "root", "zoolook22", "SIT");
 
 		$_SESSION["email"] = $email;	// Set session variables
 		$_SESSION["password"] = $phash;
@@ -76,7 +77,7 @@
 	}
 
 	function makeShash() {
-		$mysqli = new mysqli("127.0.0.1", "anon", "123", "SIT");
+		$mysqli = new mysqli("127.0.0.1", "root", "zoolook22", "SIT");
 
 		$shash = bin2hex(random_bytes(10));
 
@@ -99,13 +100,13 @@
 	}
 
 	function logoutOthers() {
-		$mysqli = new mysqli("127.0.0.1", "anon", "123", "SIT");
+		$mysqli = new mysqli("127.0.0.1", "root", "zoolook22", "SIT");
 		$_SESSION["shash"] = makeShash();
 		mysqli_query($mysqli,"UPDATE USERS SET shash='{$_SESSION["shash"]}' WHERE email='{$_SESSION["email"]}'");
 	}
 
 	function makeAcc($firstname, $lastname, $comname, $email, $password, $repass, $type) {
-		$mysqli = new mysqli("127.0.0.1", "anon", "123", "SIT");
+		$mysqli = new mysqli("127.0.0.1", "root", "zoolook22", "SIT");
 
 		// SQL injection mitigation
 		$email = mysqli_real_escape_string($mysqli,$email);
@@ -135,7 +136,7 @@
 	}
 
 	function updateAcc($email, $firstname, $lastname, $comname, $gender, $phone, $website, $citizen_of, $country, $city, $address, $fax, $about) {
-		$mysqli = new mysqli("127.0.0.1", "anon", "123", "SIT");
+		$mysqli = new mysqli("127.0.0.1", "root", "zoolook22", "SIT");
 
 		// SQL injection mitigation
 		$email = mysqli_real_escape_string($mysqli,$email);
@@ -165,7 +166,7 @@
 	}
 
 	function deleteAcc($email) {
-		$mysqli = new mysqli("127.0.0.1", "anon", "123", "SIT");
+		$mysqli = new mysqli("127.0.0.1", "root", "zoolook22", "SIT");
 
 		removeDirectory("data/users/".$email);
 		mysqli_query($mysqli,"DELETE FROM USERS WHERE email = '{$email}'");
@@ -180,7 +181,7 @@
 
 	function createJob($name, $description, $country, $city, $address, $min_exp, $category, $is_open) {
 
-		$mysqli = new mysqli("127.0.0.1", "anon", "123", "SIT");
+		$mysqli = new mysqli("127.0.0.1", "root", "zoolook22", "SIT");
 
 		// SQL injection mitigation
 		$name = mysqli_real_escape_string($mysqli,$name);
@@ -194,7 +195,7 @@
 
 	function updateJob($id ,$name, $description, $country, $city, $address, $min_exp, $category, $is_open) {
 
-		$mysqli = new mysqli("127.0.0.1", "anon", "123", "SIT");
+		$mysqli = new mysqli("127.0.0.1", "root", "zoolook22", "SIT");
 
 		// SQL injection mitigation
 		$name = mysqli_real_escape_string($mysqli,$name);
@@ -207,13 +208,13 @@
 	}
 
 	function deleteJob($id) {
-		$mysqli = new mysqli("127.0.0.1", "anon", "123", "SIT");
+		$mysqli = new mysqli("127.0.0.1", "root", "zoolook22", "SIT");
 		mysqli_query($mysqli,"DELETE FROM JOBS WHERE id = '$id' ");
 		mysqli_query($mysqli,"DELETE FROM JOB_APPLICATIONS WHERE job_id = '$id' ");
 	}
 
 	function applytoJob($id) {
-		$mysqli = new mysqli("127.0.0.1", "anon", "123", "SIT");
+		$mysqli = new mysqli("127.0.0.1", "root", "zoolook22", "SIT");
 
 		$q = mysqli_query($mysqli,"SELECT company_email FROM JOBS WHERE id='$id' limit 1");
 		$z = mysqli_fetch_array($q);
@@ -227,7 +228,7 @@
 	}
 
 	function cancelApplication($id) {
-		$mysqli = new mysqli("127.0.0.1", "anon", "123", "SIT");
+		$mysqli = new mysqli("127.0.0.1", "root", "zoolook22", "SIT");
 		mysqli_query($mysqli,"DELETE FROM JOB_APPLICATIONS WHERE job_id = '$id' AND applicant_email = '{$_SESSION["email"]}' limit 1");
 	}
 
